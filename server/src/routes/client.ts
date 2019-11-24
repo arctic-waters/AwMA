@@ -32,6 +32,7 @@ api.post('/heartbeat', (req: Request, res: Response): any => {
     return res.send({ code: 1, error: 'Room does not exist' })
 
   res.send({
+    cod: 0,
     refresh: room.refreshRate,
     processRefresh: room.processRefreshRate,
     disconnect: !room.clients.some(v => v.id === req.body.id)
@@ -74,8 +75,6 @@ api.post('/processes', (req: Request, res: Response): any => {
     return res.send({ code: 1, error: 'Invalid user' })
 
   user.latestProcesses = req.body.processes
-
-  console.log(user.latestProcesses)
 
   res.send({ code: 0 })
 })

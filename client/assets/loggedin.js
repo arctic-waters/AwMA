@@ -4,9 +4,9 @@ const $ = require('jquery')
 ipcRenderer.send('info')
 
 ipcRenderer.on('info', (event, data) => {
-  $('#name').html(data.id)
-  $('#id').html(data.room)
-  $('#refresh').html(`${1 / data.wait}fps`)
+  $('#name').html('Your ID: ' + data.id)
+  $('#id').html('Room ID: ' + data.room)
+  $('#refresh').html(`Refresh: ${1 / data.wait}fps`)
 })
 
 function logout() {

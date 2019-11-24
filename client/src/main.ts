@@ -14,20 +14,9 @@ const menu = menubar({
   preloadWindow: true
 })
 
-menu.on('before-show', () => {
-  const window = menu.window
-
-  if (!window)
-    return
-
-  if (info()) {
-    console.log('ali')
-    window.loadFile(path.join(__dirname, '..', 'assets', 'loggedin.html'))
-  }
-})
-
 ipcMain.on('login', (event: IpcMainEvent, name: string, id: string) => start(id, name))
 
 ipcMain.on('logout', (event: IpcMainEvent) => end)
 
+ipcMain.on('logged in', e => e.reply('logged in', info() != null))
 ipcMain.on('info', e => e.reply('info', info()))
