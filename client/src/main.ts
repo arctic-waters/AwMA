@@ -14,9 +14,16 @@ const menu = menubar({
   preloadWindow: true
 })
 
-ipcMain.on('login', (event: IpcMainEvent, name: string, id: string) => start(id, name))
+menu.on('ready', () => {
+  console.log('ready')
+})
 
-ipcMain.on('logout', (event: IpcMainEvent) => end)
+ipcMain.on('debug', (event, data) => {
+  console.log(data)
+})
 
-ipcMain.on('logged in', e => e.reply('logged in', info() != null))
+ipcMain.on('login', (event: IpcMainEvent, name: string, id: string) => start(name, id))
+ipcMain.on('logout', end)
+
+ipcMain.on('logged in', e => e.reply('logged in', info().connected))
 ipcMain.on('info', e => e.reply('info', info()))

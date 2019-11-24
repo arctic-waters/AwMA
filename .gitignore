@@ -1,6 +1,9 @@
 # Transpiled JavaScript
 dist/
 
+# Built binaries
+distribution/
+
 # Screens
 server/public/screen/*
 

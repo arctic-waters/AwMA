@@ -22,6 +22,8 @@ api.post('/connect', (req: Request, res: Response): any => {
 
   room.clients.push(new User(id, req.body.name))
 
+  console.log('conn', room.clients.length)
+
   res.send({ code: 0, id, room: room.id })
 })
 
@@ -31,11 +33,18 @@ api.post('/heartbeat', (req: Request, res: Response): any => {
   if (!room)
     return res.send({ code: 1, error: 'Room does not exist' })
 
+  const user = room.clients.find(u => u.id == req.body.id)
+
+  if (!user)
+    return res.send({ code: 1, error: 'Invalid user' })
+
   res.send({
-    cod: 0,
+    code: 0,
     refresh: room.refreshRate,
     processRefresh: room.processRefreshRate,
-    disconnect: !room.clients.some(v => v.id === req.body.id)
+    disconnect: !room.clients.some(v => v.id === req.body.id),
+    username: user.name,
+    roomCode: room.call
     // highRefresh: room.highRefreshRate,
     // viewing: false
   })
@@ -91,6 +100,8 @@ api.post('/disconnect', (req: Request, res: Response): any => {
     return res.send({ code: 1, error: 'Invalid user' })
 
   room.clients.filter(v => v.id !== user.id)
+
+  console.log('discon', room.clients.length)
 
   res.send({ code: 0 })
 })

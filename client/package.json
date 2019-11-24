@@ -1,15 +1,16 @@
 {
-  "name": "awma-client",
+  "name": "AwMA-Client",
   "version": "1.0.0",
   "main": "dist/main.js",
   "author": "Brian Shao <arctfoxx>",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && electron ."
+    "start": "tsc && electron .",
+    "pack": "tsc && electron-builder --dir",
+    "dist": "tsc && electron-builder"
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "electron": "^7.1.2",
     "form-data": "^3.0.0",
     "jquery": "^3.4.1",
     "menubar": "^7.0.0",
@@ -27,6 +28,22 @@
     "@types/node": "^12.12.12",
     "@types/ps-list": "^6.2.1",
     "@types/request": "^2.48.3",
-    "@types/request-promise": "^4.1.45"
+    "@types/request-promise": "^4.1.45",
+    "electron": "^7.1.2",
+    "electron-builder": "^21.2.0"
+  },
+  "build": {
+    "appId": "io.arct.awma.client",
+    "productName": "AwMA Client",
+    "copyright": "Copyright © 2019-2019 ArcticWaters Software Development Group",
+    "directories": {
+      "output": "distribution"
+    },
+    "mac": {
+      "category": "public.app-category.education"
+    },
+    "win": {
+      
+    }
   }
 }

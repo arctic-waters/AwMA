@@ -3,5 +3,9 @@
 }
 
 .login {
-  margin: 10px 10px 10px 10px;
+  margin: 20px 20px 20px 20px;
+}
+
+.margin0auto {
+  margin: 0 auto;
 }
