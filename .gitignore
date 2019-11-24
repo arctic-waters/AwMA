@@ -2,7 +2,7 @@
 dist/
 
 # Screens
-server/public/screen/*.png
+server/public/screen/*
 
 # Logs
 logs
