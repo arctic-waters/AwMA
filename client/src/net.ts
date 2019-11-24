@@ -81,6 +81,8 @@ async function heart() {
 
     if (connected)
       setTimeout(heart, 1000)
+    else
+      end
   } catch (e) {
     console.error(e)
 
@@ -90,7 +92,7 @@ async function heart() {
 
 
 export async function start(name: string, identifier: string) {
-  let { data } = await axios.post(server + '/connect', { room: identifier, name: name })
+  let { data } = await axios.post(server + '/connect', { room: identifier, name: name.substring(0, 20) })
 
   id = data.id
   room = data.room
